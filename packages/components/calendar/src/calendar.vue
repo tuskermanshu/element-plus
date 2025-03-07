@@ -19,7 +19,12 @@
       </slot>
     </div>
     <div v-if="validatedRange.length === 0" :class="ns.e('body')">
-      <date-table :date="date" :selected-day="realSelectedDay" @pick="pickDay">
+      <date-table
+        :date="date"
+        :selected-day="realSelectedDay"
+        :cell-data="cellData"
+        @pick="pickDay"
+      >
         <template v-if="$slots['date-cell']" #date-cell="data">
           <slot name="date-cell" v-bind="data" />
         </template>
@@ -33,6 +38,7 @@
         :selected-day="realSelectedDay"
         :range="range_"
         :hide-header="index !== 0"
+        :cell-data="cellData"
         @pick="pickDay"
       >
         <template v-if="$slots['date-cell']" #date-cell="data">
@@ -69,6 +75,7 @@ const {
   realSelectedDay,
   selectDate,
   validatedRange,
+  cellData,
 } = useCalendar(props, emit, COMPONENT_NAME)
 
 const { t } = useLocale()

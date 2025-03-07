@@ -185,5 +185,6 @@ export const useCalendar = (
     pickDay,
     selectDate,
     validatedRange,
+    cellData: props.cellData,
   }
 }

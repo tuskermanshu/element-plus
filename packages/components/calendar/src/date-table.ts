@@ -39,6 +39,16 @@ export const dateTableProps = buildProps({
   hideHeader: {
     type: Boolean,
   },
+  cellData: {
+    type: definePropType<
+      (cell: {
+        day: string
+        type: string
+        isSelected: boolean
+        date: Date
+      }) => Record<string, any>
+    >(Function),
+  },
 } as const)
 export type DateTableProps = ExtractPropTypes<typeof dateTableProps>
 

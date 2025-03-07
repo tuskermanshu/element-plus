@@ -32,6 +32,19 @@ export const calendarProps = buildProps({
     type: definePropType<[Date, Date]>(Array),
     validator: isValidRange,
   },
+  /**
+   * @description function that provides custom data for date-cell
+   */
+  cellData: {
+    type: definePropType<
+      (data: {
+        day: string
+        type: string
+        isSelected: boolean
+        date: Date
+      }) => Record<string, any>
+    >(Function),
+  },
 } as const)
 export type CalendarProps = ExtractPropTypes<typeof calendarProps>
 

@@ -105,12 +105,22 @@ export const useDateTable = (
 
   const getSlotData = ({ text, type }: CalendarDateCell) => {
     const day = getFormattedDate(text, type)
-    return {
+    const defaultData = {
       isSelected: day.isSame(props.selectedDay),
       type: `${type}-month`,
       day: day.format('YYYY-MM-DD'),
       date: day.toDate(),
     }
+
+    // If cellData prop is provided, call it with default data and merge results
+    if (props.cellData) {
+      console.log('props.cellData', props.cellData)
+      const customData = props.cellData(defaultData)
+      console.log('customData', customData)
+      return { ...defaultData, ...customData }
+    }
+
+    return defaultData
   }
 
   return {
